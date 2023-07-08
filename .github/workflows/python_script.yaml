@@ -2,7 +2,7 @@ name: Python Script Automation
 
 on:
   schedule:
-    - cron: '20,21,22 16 * * *'  # Set your desired schedule using cron syntax
+    - cron: '26-35 16 * * *'  # Set your desired schedule using cron syntax
 
 jobs:
   run-python-script:
@@ -24,4 +24,4 @@ jobs:
         run: echo "CURRENT_TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
 
       - name: Run Python script with current date
-        run: python autogen.py --date $CURRENT_TIMESTAMP
+        run: python autogen.py $CURRENT_TIMESTAMP
