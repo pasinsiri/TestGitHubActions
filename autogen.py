@@ -8,6 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 if len(sys.argv) <= 1:
     raise AttributeError('No arguments found')
+logging.info(f"Arguments: {', '.join(sys.argv[1:])}")
 
 curr_date = sys.argv[1]
 logging.info(f"Running at {dt.datetime.strftime(curr_date, '%Y-%m-%d %H:%m:%s')}")
