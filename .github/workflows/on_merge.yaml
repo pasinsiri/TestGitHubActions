@@ -26,5 +26,5 @@ jobs:
       - name: Set secret 2 as environment variable
         run: echo "MY_FAV_CITY_2=${{ secrets.MY_FAV_CITY_2 }}" >> $GITHUB_ENV
 
-      - name: Run Python script with current date
-        run: python autogen.py $MY_FAV_CITY_1 $MY_FAV_CITY_2
+      - name: Run Python script with parsed arguments
+        run: python validate_credential.py $MY_FAV_CITY_1 $MY_FAV_CITY_2
