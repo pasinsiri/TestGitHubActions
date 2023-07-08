@@ -1,0 +1,30 @@
+name: Python Script Automation - On Merge Main
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify the Python version you require
+
+      - name: Install dependencies
+        run: pip install --upgrade pip  # If you have any dependencies, specify them in requirements.txt
+
+      - name: Set secret 1 as environment variable
+        run: echo "MY_FAV_CITY_1=${{ secrets.MY_FAV_CITY_1 }}" >> $GITHUB_ENV
+
+      - name: Set secret 2 as environment variable
+        run: echo "MY_FAV_CITY_2=${{ secrets.MY_FAV_CITY_2 }}" >> $GITHUB_ENV
+
+      - name: Run Python script with current date
+        run: python autogen.py $MY_FAV_CITY_1 $MY_FAV_CITY_2
