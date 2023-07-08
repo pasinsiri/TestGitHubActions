@@ -2,7 +2,7 @@ name: Python Script Automation
 
 on:
   schedule:
-    - cron: '* * * * *'  # Set your desired schedule using cron syntax
+    - cron: '0 */4 * * *'  # Set your desired schedule using cron syntax
 
 jobs:
   run-python-script:
