@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: pip install numpy==1.25.0  # If you have any dependencies, specify them in requirements.txt
 
-      - name: Set current timestamp
-        run: echo "CURRENT_TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+      - name: Set checkpoint
+        run: echo "Job is going to run"
 
       - name: Run Python script with current date
         run: python autogen.py $CURRENT_TIMESTAMP
