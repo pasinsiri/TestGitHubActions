@@ -1,0 +1,17 @@
+{
+    "europe": [
+        "amsterdam",
+        "berlin",
+        "copenhagen",
+        "oslo",
+        "paris",
+        "stockholm",
+        "warsaw"
+    ],
+    "non_europe": [
+        "bangkok",
+        "canberra",
+        "tokyo",
+        "seoul"
+    ]
+}
