@@ -1,0 +1,27 @@
+name: Python Script Automation
+
+on:
+  schedule:
+    - cron: '20,21,22 16 * * *'  # Set your desired schedule using cron syntax
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify the Python version you require
+
+      - name: Install dependencies
+        run: pip install numpy==1.25.0  # If you have any dependencies, specify them in requirements.txt
+
+      - name: Set current timestamp
+        run: echo "CURRENT_TIMESTAMP=$(date -u +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Run Python script with current date
+        run: python autogen.py --date $CURRENT_TIMESTAMP
