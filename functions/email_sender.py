@@ -22,7 +22,7 @@ class EmailSender():
         if host is None:
             sender_domain = self.sender.split('@')[-1].split('.')[0]
             logging.info(f"Host is not specified. Extract domain from the sender's email\nThe domain is {sender_domain}")
-            smtp_host = self.host_mapper.get(host)
+            smtp_host = self.host_mapper.get(sender_domain)
             if smtp_host is None:
                 raise ValueError('Domain not found, if it is a newly added domain, please update the smtp_domain_mapper.json')
             return smtp_host
