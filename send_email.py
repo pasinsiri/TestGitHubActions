@@ -1,7 +1,5 @@
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import argparse
+from functions.email_sender import EmailSender
 
 # * configure email and port
 PORT = 587
@@ -28,20 +26,14 @@ parser.add_argument('-pw', '--password')
 args = parser.parse_args()
 password = args.password
 
-for recipient in RECIPIENTS:
-    # * create a message object
-    message = MIMEMultipart()
-    message['From'] = SENDER
-    message['To'] = recipient
-    message['Subject'] = SUBJECT
+es = EmailSender(
+    port=PORT,
+    sender=SENDER,
+    password=password,
+    recipients=RECIPIENTS,
+)
 
-    # * add the body to the message
-    message.attach(MIMEText(BODY, 'plain'))
-
-    # * create a secure SSL context
-    smtp = smtplib.SMTP("smtp-mail.outlook.com", port=587)
-    smtp.starttls()
-    smtp.login(SENDER, password)
-    smtp.send_message(message)
-    print(f'Email was successfully sent to {recipient}')
-    smtp.quit()
+es.send_email(
+    subject=SUBJECT,
+    body=BODY
+)
