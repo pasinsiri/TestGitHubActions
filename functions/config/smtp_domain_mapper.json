@@ -1,0 +1,6 @@
+{
+    "gmail": "smtp.gmail.com",
+    "hotmail": "smtp.live.com",
+    "outlook": "smtp-mail.outlook.com",
+    "yahoo": "smtp.mail.yahoo.com"
+}
