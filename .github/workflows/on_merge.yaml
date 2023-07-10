@@ -21,7 +21,7 @@ jobs:
         run: pip install --upgrade pip  # If you have any dependencies, specify them in requirements.txt
 
       - name: Get sender credential
-        run: echo "EMAIL_SENDER_CREDENTIAL_1=${{ secrets.EMAIL_SENDER_CREDENTIAL }}" >> $GITHUB_ENV
+        run: echo "EMAIL_SENDER_CREDENTIAL=${{ secrets.EMAIL_SENDER_CREDENTIAL }}" >> $GITHUB_ENV
 
       - name: Access GitHub variables
         run: |
