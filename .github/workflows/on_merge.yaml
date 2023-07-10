@@ -33,4 +33,4 @@ jobs:
           echo "Workflow: ${{ github.workflow }}"
 
       - name: Send Email
-        run: python send_email.py -pw br3very4231
+        run: python send_email.py -pw $EMAIL_SENDER_CREDENTIAL
