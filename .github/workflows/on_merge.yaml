@@ -25,7 +25,7 @@ jobs:
 
       - name: Access GitHub variables
         run: |
-          echo "REPICIENTS_LIST: ${{ github.EMAIL_RECIPIENTS }}"
+          echo "REPICIENTS_LIST: ${{ secrets.EMAIL_SENDER_CREDENTIAL }}"
           echo "Repository: ${{ github.repository }}"
           echo "Branch: ${{ github.ref }}"
           echo "Commit SHA: ${{ github.sha }}"
