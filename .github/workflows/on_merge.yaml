@@ -1,8 +1,8 @@
 name: Python Script Automation - On Merge Main
 
 on:
-  push:
-    branches: [feature/workflow]
+  pull_request:
+    branches: [main]
 
 jobs:
   run-python-script:
