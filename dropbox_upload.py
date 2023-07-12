@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 import pandas as pd
 import dropbox
-from io import BytesIO, StringIO
+import datetime as dt
 
 # * retrieve dropbox credentials
 parser = argparse.ArgumentParser(
@@ -29,6 +29,8 @@ sample_array = np.array(
 sample_df = pd.DataFrame(sample_array, columns=['key', 'value1', 'value2'])
 
 # * connect to dropbox and upload data
+date_str = dt.datetime.strftime(dt.date.today(), '%Y-%m-%d')
 dbx = dropbox.Dropbox(token)
 df_io = sample_df.to_csv(index=False).encode()
-dbx.files_upload(df_io, '/Auto Uploading/sample_data.csv', mode=dropbox.files.WriteMode.overwrite)
+dbx.files_upload(df_io, f'/Auto Uploading/sample_data_{date_str}.csv', mode=dropbox.files.WriteMode.overwrite)
+print('Uploading Completed')
