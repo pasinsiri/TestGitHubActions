@@ -1,8 +1,8 @@
-name: Python Script Automation
+name: Dropbox Auto Upload
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # Set your desired schedule using cron syntax
+    - cron: '0 0 * * *'  # Set your desired schedule using cron syntax
 
 jobs:
   run-python-script:
@@ -15,13 +15,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Specify the Python version you require
+          python-version: '3.8'  # Specify the Python version you require
 
       - name: Install dependencies
-        run: pip install numpy==1.25.0  # If you have any dependencies, specify them in requirements.txt
+        run: pip install numpy==1.25.0 pandas==2.0.3 dropbox==11.36.2  # If you have any dependencies, specify them in requirements.txt
 
-      - name: Set checkpoint
-        run: echo "Job is going to run"
+      - name: Get sender credential
+        run: echo "EMAIL_SENDER_CREDENTIAL=${{ secrets.DROPBOX_SECRET }}" >> $DROPBOX_SECRET
 
       - name: Run Python script with current date
-        run: python autogen.py $CURRENT_TIMESTAMP
+        run: python dropbox_upload.py -tk $DROPBOX_SECRET
