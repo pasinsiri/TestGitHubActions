@@ -31,4 +31,4 @@ sample_df = pd.DataFrame(sample_array, columns=['key', 'value1', 'value2'])
 # * connect to dropbox and upload data
 dbx = dropbox.Dropbox(token)
 df_io = sample_df.to_csv(index=False).encode()
-dbx.files_upload(df_io, '/Test GitHub Actions/sample_data.csv', mode=dropbox.files.WriteMode.overwrite)
+dbx.files_upload(df_io, '/Auto Uploading/sample_data.csv', mode=dropbox.files.WriteMode.overwrite)
