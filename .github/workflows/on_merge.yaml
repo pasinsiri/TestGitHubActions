@@ -20,11 +20,17 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip  # If you have any dependencies, specify them in requirements.txt
 
-      - name: Set secret 1 as environment variable
-        run: echo "MY_FAV_CITY_1=${{ secrets.MY_FAV_CITY_1 }}" >> $GITHUB_ENV
+      - name: Get sender credential
+        run: echo "EMAIL_SENDER_CREDENTIAL=${{ secrets.EMAIL_SENDER_CREDENTIAL }}" >> $GITHUB_ENV
 
-      - name: Set secret 2 as environment variable
-        run: echo "MY_FAV_CITY_2=${{ secrets.MY_FAV_CITY_2 }}" >> $GITHUB_ENV
+      - name: Access GitHub variables
+        run: |
+          echo "REPICIENTS_LIST: ${{ github.EMAIL_RECIPIENTS }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Workflow: ${{ github.workflow }}"
 
-      - name: Run Python script with parsed arguments
-        run: python validate_credential.py $MY_FAV_CITY_1 $MY_FAV_CITY_2
+      - name: Send Email
+        run: python send_email.py -pw $EMAIL_SENDER_CREDENTIAL
