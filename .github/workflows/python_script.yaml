@@ -21,7 +21,7 @@ jobs:
         run: pip install numpy==1.25.0 pandas==2.0.3 dropbox==11.36.2  # If you have any dependencies, specify them in requirements.txt
 
       - name: Get sender credential
-        run: echo "EMAIL_SENDER_CREDENTIAL=${{ secrets.DROPBOX_SECRET }}" >> $DROPBOX_SECRET
+        run: echo "DROPBOX_SECRET=${{ secrets.DROPBOX_SECRET }}" >> $DROPBOX_SECRET
 
       - name: Run Python script with current date
         run: python dropbox_upload.py -tk $DROPBOX_SECRET
