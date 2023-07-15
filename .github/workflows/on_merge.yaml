@@ -32,5 +32,5 @@ jobs:
           echo "Actor: ${{ github.actor }}"
           echo "Workflow: ${{ github.workflow }}"
 
-      - name: Send Email
-        run: python send_email.py -pw $EMAIL_SENDER_CREDENTIAL
+      # - name: Send Email
+      #   run: python send_email.py -pw $EMAIL_SENDER_CREDENTIAL
