@@ -21,7 +21,7 @@ jobs:
         run: pip install numpy==1.25.0 pandas==2.0.3 dropbox==11.36.2  # If you have any dependencies, specify them in requirements.txt
 
       - name: Get sender credential
-        run: echo "ACCESS_TOKEN=${{ secrets.DROPBOX_ACCESS_TOKEN }}" >> $ACCESS_TOKEN
+        run: echo "ACCESS_TOKEN=${{ secrets.DROPBOX_ACCESS_TOKEN }}" >> $GITHUB_ENV
 
       - name: Run Python script with current date
         run: python dropbox_upload.py -tk $ACCESS_TOKEN
