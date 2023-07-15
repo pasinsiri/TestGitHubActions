@@ -1,7 +1,7 @@
 name: Python Script Automation - On Merge Main
 
 on:
-  push:
+  pull_request:
     branches: [main]
 
 jobs:
@@ -18,10 +18,19 @@ jobs:
           python-version: '3.x'  # Specify the Python version you require
 
       - name: Install dependencies
-        run: pip install numpy==1.25.0 pandas==2.0.3 dropbox==11.36.2  # If you have any dependencies, specify them in requirements.txt
-  
+        run: pip install --upgrade pip  # If you have any dependencies, specify them in requirements.txt
+
       - name: Get sender credential
-        run: echo "ACCESS_TOKEN=${{ secrets.DROPBOX_ACCESS_TOKEN }}" >> $GITHUB_ENV
-  
-      - name: Run Python script with current date
-        run: python dropbox_upload.py -tk $ACCESS_TOKEN
+        run: echo "EMAIL_SENDER_CREDENTIAL=${{ secrets.EMAIL_SENDER_CREDENTIAL }}" >> $GITHUB_ENV
+
+      - name: Access GitHub variables
+        run: |
+          echo "REPICIENTS_LIST: ${{ github.EMAIL_RECIPIENTS }}"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          echo "Workflow: ${{ github.workflow }}"
+
+      - name: Send Email
+        run: python send_email.py -pw $EMAIL_SENDER_CREDENTIAL
